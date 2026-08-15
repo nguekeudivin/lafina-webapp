@@ -28,7 +28,7 @@ export default function AgentClientDetailScreen() {
       </div>
 
       {/* --- Avatar Superposé & Titres --- */}
-      <div className="flex flex-col items-center text-center -mt-12 px-6">
+      <div className="relative z-10 flex flex-col items-center text-center -mt-12 px-6">
         <div className="w-24 h-24 rounded-full bg-[#EAF2EC] text-[#165A36] font-bold text-2xl flex items-center justify-center border-4 border-white shadow-md">
           AN
         </div>
