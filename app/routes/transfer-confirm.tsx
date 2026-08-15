@@ -73,7 +73,7 @@ export default function TransferConfirmScreen() {
       {/* Bouton d'action */}
       <div className="pt-6 pb-2">
         <button
-          onClick={() => navigate("/send-success")}
+          onClick={() => navigate("/transfer-success")}
           className="w-full bg-[#15633C] hover:bg-[#104d2e] active:bg-[#0c3c23] text-white font-medium py-4 px-6 rounded-2xl transition-colors shadow-sm text-base"
         >
           Terminer

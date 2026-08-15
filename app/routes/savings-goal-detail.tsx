@@ -144,7 +144,7 @@ export default function SavingsGoalDetailScreen() {
           {/* Retrait */}
           <button
             type="button"
-            onClick={() => navigate("/wallet-withdraw")}
+            onClick={() => navigate("/savings-withdraw-early")}
             className="flex flex-col items-center gap-1.5 cursor-pointer group"
           >
             <div className="w-14 h-14 rounded-2xl bg-[#FDF6EC] group-hover:bg-[#faeed9] text-[#D97706] flex items-center justify-center shadow-xs transition-colors">

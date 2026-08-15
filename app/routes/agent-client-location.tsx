@@ -16,7 +16,7 @@ export default function AgentClientLocationScreen() {
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/confirm-position");
+    navigate("/agent-client-gps");
   };
 
   return (

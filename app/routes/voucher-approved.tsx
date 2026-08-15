@@ -78,7 +78,7 @@ export default function VoucherApprovedScreen() {
       <div className="pb-4 pt-6">
         <button
           type="button"
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/voucher-detail")}
           className="w-full bg-[#165A36] hover:bg-[#134D2E] active:scale-[0.99] text-white py-4 rounded-2xl font-semibold text-base transition-all shadow-md shadow-[#165A36]/15 cursor-pointer"
         >
           Voir le voucher

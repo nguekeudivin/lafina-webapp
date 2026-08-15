@@ -131,7 +131,7 @@ export default function ProfileIdentityScreen() {
       {/* Bouton d'action en bas */}
       <div className="pt-6 pb-2">
         <button
-          onClick={() => navigate("/profile-documents")}
+          onClick={() => navigate("/profile-address")}
           className="w-full bg-[#15633C] hover:bg-[#104d2e] active:bg-[#0c3c23] text-white font-medium py-4 px-6 rounded-2xl transition-colors shadow-sm text-base"
         >
           Continuer

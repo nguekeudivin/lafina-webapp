@@ -18,7 +18,7 @@ export default function ProfileInfoScreen() {
 
   const handleContinue = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/profile-address");
+    navigate("/profile-selfie");
   };
 
   return (

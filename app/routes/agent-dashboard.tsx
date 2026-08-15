@@ -90,7 +90,7 @@ export default function AgentDashboardScreen() {
             {/* Recharge */}
             <button
               type="button"
-              onClick={() => navigate("/wallet-recharge")}
+              onClick={() => navigate("/agent-recharge-new")}
               className="bg-white p-4 rounded-3xl border border-gray-100 shadow-xs flex items-center gap-3 text-left hover:border-gray-200 transition-all cursor-pointer"
             >
               <div className="w-11 h-11 rounded-2xl bg-[#EAF2EC] text-[#165A36] flex items-center justify-center shrink-0">

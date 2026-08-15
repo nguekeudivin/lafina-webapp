@@ -13,7 +13,7 @@ export default function ConfirmPositionScreen() {
   const navigate = useNavigate();
 
   const handleConfirm = () => {
-    navigate("/verify-summary");
+    navigate("/profile-documents");
   };
 
   return (

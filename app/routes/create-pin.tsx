@@ -18,7 +18,7 @@ export default function CreatePinScreen() {
 
   const handleCreatePin = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/account-created");
   };
 
   return (

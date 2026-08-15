@@ -12,7 +12,7 @@ export default function ProfileDocumentsScreen() {
   const navigate = useNavigate();
 
   const handleLocateHome = () => {
-    navigate("/confirm-position");
+    navigate("/verify-summary");
   };
 
   return (

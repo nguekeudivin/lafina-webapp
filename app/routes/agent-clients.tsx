@@ -112,7 +112,7 @@ export default function AgentClientsScreen() {
               {group.clients.map((client) => (
                 <div
                   key={client.id}
-                  onClick={() => navigate("/profile")}
+                  onClick={() => navigate("/agent-client-detail")}
                   className="bg-white p-3.5 rounded-2xl border border-gray-100 shadow-xs flex items-center justify-between cursor-pointer hover:border-gray-200 transition-colors"
                 >
                   <div className="flex items-center gap-3.5">
