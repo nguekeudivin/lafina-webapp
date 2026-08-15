@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router";
-import { ArrowUpFromLine } from "lucide-react";
-import type { Route } from "./+types/insufficient-balance";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Solde insuffisant - LA FINA" },
-    { name: "description", content: "Votre solde actuel ne permet pas de finaliser cette transaction" },
+    { name: "description", content: "Solde insuffisant pour effectuer le paiement" },
   ];
 }
 
@@ -13,63 +11,62 @@ export default function InsufficientBalanceScreen() {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-h-screen w-full bg-[#F8FAF8] text-gray-900 flex flex-col justify-between overflow-hidden select-none font-sans max-w-md mx-auto px-6 py-8 shadow-2xl">
-      {/* Espace supérieur */}
-      <div className="pt-8" />
+    <div className="flex flex-col min-h-screen bg-[#F9F9F9] text-gray-900 px-6 py-6 max-w-md mx-auto justify-between font-sans">
+      {/* Spacer pour centrer le contenu principal */}
+      <div />
 
-      {/* --- Contenu Central --- */}
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 -mt-10">
-        {/* Cercle rose avec icône rouge */}
-        <div className="w-20 h-20 rounded-full bg-[#FEE2E2]/60 text-[#EF4444] flex items-center justify-center shadow-xs">
+      {/* Contenu central */}
+      <div className="flex flex-col items-center text-center">
+        {/* Icône avec fond circulaire rose/rouge très clair */}
+        <div className="w-24 h-24 rounded-full bg-[#FDF0EE] flex items-center justify-center mb-6">
           <svg
-            viewBox="0 0 32 32"
-            className="w-10 h-10 stroke-[2.2] stroke-current fill-none"
+            className="w-10 h-10 text-[#E55345]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
           >
-            <rect x="4" y="10" width="24" height="16" rx="4" />
-            <line x1="4" y1="16" x2="28" y2="16" />
-            <path
-              d="M16 10V3M16 3L12 7M16 3L20 7"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <rect x="3" y="8" width="18" height="12" rx="2" strokeWidth="2" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7 8V6a2 2 0 012-2h6a2 2 0 012 2v2" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-5m0 0l-2 2m2-2l2 2" strokeWidth="2" />
           </svg>
         </div>
 
         {/* Titre */}
-        <h1 className="mt-7 text-2xl sm:text-[28px] font-bold text-gray-900 leading-tight">
+        <h1 className="text-2xl font-bold text-gray-900 mb-3 tracking-tight">
           Solde insuffisant
         </h1>
 
-        {/* Message explicatif avec montant en rouge */}
-        <p className="mt-3 text-sm text-gray-500 font-normal leading-relaxed max-w-xs">
+        {/* Explication du montant manquant */}
+        <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-6">
           Il vous manque{" "}
-          <strong className="text-[#DC2626] font-bold">15 000 ABBIA</strong>{" "}
+          <span className="text-[#E55345] font-semibold">
+            15 000 ABBIA
+          </span>{" "}
           pour effectuer ce paiement de 25 000.
         </p>
 
-        {/* Pastille Solde actuel */}
-        <div className="mt-6 bg-white border border-gray-100 rounded-2xl py-3 px-6 shadow-xs">
-          <span className="text-xs text-gray-600 font-medium">
-            Solde actuel :{" "}
-            <strong className="text-gray-900 font-bold">10 000 ABBIA</strong>
+        {/* Badge du solde actuel */}
+        <div className="bg-white rounded-2xl px-5 py-3 border border-gray-100 shadow-sm text-sm text-gray-500">
+          Solde actuel :{" "}
+          <span className="font-bold text-gray-800">
+            10 000 ABBIA
           </span>
         </div>
-      </main>
+      </div>
 
-      {/* --- Bas de page / Boutons d'Action --- */}
-      <div className="pb-4 pt-6 space-y-3">
+      {/* Boutons d'action en bas */}
+      <div className="flex flex-col gap-3 pt-6 pb-2">
         <button
-          type="button"
           onClick={() => navigate("/wallet-recharge")}
-          className="w-full bg-[#165A36] hover:bg-[#134D2E] active:scale-[0.99] text-white py-4 rounded-2xl font-semibold text-base transition-all shadow-md shadow-[#165A36]/15 cursor-pointer"
+          className="w-full bg-[#15633C] hover:bg-[#104d2e] active:bg-[#0c3c23] text-white font-medium py-4 px-6 rounded-2xl transition-colors shadow-sm text-base"
         >
           Recharger mon wallet
         </button>
 
         <button
-          type="button"
-          onClick={() => navigate("/wallet")}
-          className="w-full text-center text-sm font-semibold text-gray-500 hover:text-gray-800 py-2 cursor-pointer transition-colors"
+          onClick={() => navigate(-1)}
+          className="w-full bg-transparent hover:bg-gray-100/50 text-gray-600 font-medium py-3 px-6 rounded-2xl transition-colors text-base"
         >
           Annuler
         </button>

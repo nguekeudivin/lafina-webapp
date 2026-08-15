@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { Route } from "./+types/send-xfa";
+import { ChevronLeft, Plus, QrCode } from "lucide-react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
-    { title: "Envoyer des XFA - LA FINA" },
+    { title: "Envoyer des XAF - LA FINA" },
     { name: "description", content: "Envoyez des Francs CFA instantanément" },
   ];
 }
 
-export default function SendXfaScreen() {
+export default function SendXafScreen() {
+  const [recipient, setRecipient] = useState("6 71 22 08 45");
   const [amount, setAmount] = useState("50 000");
+  const [note, setNote] = useState("");
   const navigate = useNavigate();
 
-  const handleSend = () => {
+  const handleSend = (e: React.FormEvent) => {
+    e.preventDefault();
     navigate("/confirm-transfer");
   };
 
@@ -31,70 +33,121 @@ export default function SendXfaScreen() {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <h1 className="text-base font-bold text-gray-900 pr-11">
-            Envoyer des XFA
+            Envoyer des XAF
           </h1>
           <div />
         </div>
 
-        {/* --- Carte Sombre Montant --- */}
-        <div className="mt-6 rounded-3xl bg-[#1E2E24] p-6 text-white text-center shadow-md">
-          <span className="text-xs text-white/70 font-medium">
-            Montant à envoyer
-          </span>
-          <div className="my-2">
-            <span className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              {amount}
-            </span>
+        {/* --- Destinataires récents --- */}
+        <div className="mt-6">
+          <h2 className="text-xs font-semibold text-gray-700 mb-3">
+            Destinataires récents
+          </h2>
+
+          <div className="flex items-center gap-4">
+            {/* Destinataire 1 : Nkam */}
+            <button
+              type="button"
+              onClick={() => setRecipient("6 71 22 08 45")}
+              className="flex flex-col items-center gap-1.5 cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#165A36] text-white font-bold text-sm flex items-center justify-center shadow-xs">
+                NK
+              </div>
+              <span className="text-xs font-medium text-gray-700">Nkam</span>
+            </button>
+
+            {/* Destinataire 2 : AgroP. */}
+            <button
+              type="button"
+              onClick={() => setRecipient("6 99 12 34 56")}
+              className="flex flex-col items-center gap-1.5 cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#B88726] text-white font-bold text-sm flex items-center justify-center shadow-xs">
+                AP
+              </div>
+              <span className="text-xs font-medium text-gray-700">AgroP.</span>
+            </button>
+
+            {/* Destinataire 3 : Nouveau */}
+            <button
+              type="button"
+              onClick={() => setRecipient("")}
+              className="flex flex-col items-center gap-1.5 cursor-pointer"
+            >
+              <div className="w-14 h-14 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center shadow-xs hover:bg-gray-200 transition-colors">
+                <Plus className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium text-gray-500">Nouveau</span>
+            </button>
           </div>
-          <span className="text-xs text-white/60 font-medium">
-            Solde : 340 500 XAF
-          </span>
         </div>
 
-        {/* --- Bénéficiaire --- */}
-        <div className="mt-8 space-y-3">
-          <h2 className="text-xs font-semibold text-gray-700">Bénéficiaire</h2>
-
-          <div className="flex items-center justify-between p-3.5 rounded-2xl border border-gray-200 bg-white shadow-xs cursor-pointer hover:border-gray-300 transition-colors">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-[#165A36] text-white font-bold text-sm flex items-center justify-center shrink-0">
-                JD
-              </div>
-              <div>
-                <p className="font-bold text-gray-900 text-sm">Jean Douala</p>
-                <p className="text-xs text-gray-400 mt-0.5">
-                  +237 6 55 12 88 04
-                </p>
-              </div>
+        {/* --- Champ Numéro ou QR --- */}
+        <div className="mt-6">
+          <label className="block text-xs font-semibold text-gray-700 mb-1.5">
+            Numéro ou QR
+          </label>
+          <div className="flex items-center justify-between w-full px-4 py-3.5 rounded-2xl border border-gray-200 bg-white focus-within:border-[#165A36] transition-colors shadow-xs">
+            <div className="flex items-center gap-3 flex-1">
+              <span className="font-bold text-gray-900 text-base">+237</span>
+              <input
+                type="tel"
+                value={recipient}
+                onChange={(e) => setRecipient(e.target.value)}
+                placeholder="6 71 22 08 45"
+                className="w-full bg-transparent text-gray-800 text-base font-medium outline-none placeholder:text-gray-300"
+              />
             </div>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
+            <button
+              type="button"
+              onClick={() => navigate("/scan-qr")}
+              className="text-[#165A36] hover:text-[#134D2E] p-1 cursor-pointer"
+            >
+              <QrCode className="w-5 h-5" />
+            </button>
           </div>
         </div>
 
-        {/* --- Détails de facturation --- */}
-        <div className="mt-8 space-y-3 pt-2">
-          <div className="flex items-center justify-between text-xs">
-            <span className="text-gray-400 font-medium">Frais de transfert</span>
-            <span className="font-bold text-gray-900">Gratuit</span>
+        {/* --- Section Montant --- */}
+        <div className="mt-8 text-center">
+          <span className="text-xs text-gray-400 font-medium">Montant</span>
+          <div className="mt-2 flex items-center justify-center gap-1">
+            <input
+              type="text"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="text-3xl sm:text-4xl font-extrabold text-gray-900 bg-transparent text-center outline-none w-48"
+            />
+            <span className="w-0.5 h-8 bg-gray-400 animate-pulse" />
           </div>
+          <p className="mt-1 text-xs text-gray-400 font-medium">
+            Solde : 340 000 XAF
+          </p>
+        </div>
 
-          <div className="flex items-center justify-between text-xs pt-1">
-            <span className="text-gray-400 font-medium">Total débité</span>
-            <span className="font-bold text-gray-900 text-sm">
-              {amount} XAF
-            </span>
+        {/* --- Champ Note Optionnelle --- */}
+        <div className="mt-8">
+          <div className="w-full px-4 py-3.5 rounded-2xl border border-gray-200 bg-white focus-within:border-[#165A36] transition-colors shadow-xs">
+            <input
+              type="text"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="Ajouter une note (optionnel)"
+              className="w-full bg-transparent text-gray-700 text-sm outline-none placeholder:text-gray-400"
+            />
           </div>
         </div>
       </div>
 
-      {/* --- Bas de page / Bouton Envoyer --- */}
+      {/* --- Bas de page / Bouton Continuer --- */}
       <div className="pb-4 pt-6">
         <button
           type="button"
           onClick={handleSend}
-          className="w-full bg-[#165A36] hover:bg-[#134D2E] active:scale-[0.99] text-white py-4 rounded-2xl font-semibold text-base transition-all shadow-md shadow-[#165A36]/15 cursor-pointer"
+          className="w-full bg-[#165A36] hover:bg-[#134D2E] active:scale-[0.99] text-white py-4 rounded-2xl font-bold text-base transition-all shadow-md shadow-[#165A36]/15 cursor-pointer"
         >
-          Envoyer {amount} XFA
+          Continuer
         </button>
       </div>
     </div>

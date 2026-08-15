@@ -33,29 +33,20 @@ export default function CreditScreen() {
           Crédits & Vouchers
         </h1>
 
-        {/* Sélecteur de devise ABBIA / XFA */}
+        {/* Sélecteur de devise ABBIA / XAF */}
         <div className="mt-4 p-1 bg-[#F0F2F0] rounded-2xl flex items-center">
           <button
             type="button"
-            onClick={() => setCurrency("ABBIA")}
-            className={`flex-1 py-2 text-center rounded-xl text-sm font-bold transition-all cursor-pointer ${
-              currency === "ABBIA"
-                ? "bg-white text-gray-900 shadow-xs"
-                : "text-gray-400 hover:text-gray-600"
-            }`}
+            className="flex-1 py-2 text-center rounded-xl text-sm font-bold transition-all cursor-pointer bg-white text-gray-900 shadow-xs"
           >
             ABBIA
           </button>
           <button
             type="button"
-            onClick={() => setCurrency("XFA")}
-            className={`flex-1 py-2 text-center rounded-xl text-sm font-bold transition-all cursor-pointer ${
-              currency === "XFA"
-                ? "bg-white text-gray-900 shadow-xs"
-                : "text-gray-400 hover:text-gray-600"
-            }`}
+            onClick={() => navigate("/credit-xaf")}
+            className="flex-1 py-2 text-center rounded-xl text-sm font-bold transition-all cursor-pointer text-gray-400 hover:text-gray-600"
           >
-            XFA
+            XAF
           </button>
         </div>
       </header>
@@ -125,7 +116,10 @@ export default function CreditScreen() {
           </div>
 
           {/* Carte Voucher Actif */}
-          <div className="bg-white p-5 rounded-3xl border border-gray-100 shadow-xs space-y-4">
+          <div
+            onClick={() => navigate("/voucher-detail")}
+            className="p-5 rounded-3xl bg-white border border-gray-100 shadow-xs space-y-4 cursor-pointer hover:border-gray-200 transition-colors"
+          >
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-gray-900 text-base">

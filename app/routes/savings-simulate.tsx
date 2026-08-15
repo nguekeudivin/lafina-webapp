@@ -16,7 +16,7 @@ export default function SavingsSimulateScreen() {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/savings-lock");
+    navigate("/savings-goal-summary");
   };
 
   return (

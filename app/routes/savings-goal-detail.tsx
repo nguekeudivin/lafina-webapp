@@ -118,7 +118,7 @@ export default function SavingsGoalDetailScreen() {
           {/* Alimenter */}
           <button
             type="button"
-            onClick={() => navigate("/wallet-recharge")}
+            onClick={() => navigate("/savings-deposit")}
             className="flex flex-col items-center gap-1.5 cursor-pointer group"
           >
             <div className="w-14 h-14 rounded-2xl bg-[#165A36] group-hover:bg-[#134D2E] text-white flex items-center justify-center shadow-xs transition-colors">

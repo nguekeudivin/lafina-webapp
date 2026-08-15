@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router";
 import { ChevronLeft, Check } from "lucide-react";
-import type { Route } from "./+types/repayment-schedule";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Calendrier de remboursement - LA FINA" },
     { name: "description", content: "Suivi des échéances et paiements de crédit" },
@@ -62,34 +61,34 @@ export default function RepaymentScheduleScreen() {
         </div>
 
         {/* --- Carte Solde Restant Sombre --- */}
-        <div className="mt-6 p-5 rounded-3xl bg-[#1E2E24] text-white shadow-md space-y-3">
+        <div className="mt-6 p-6 rounded-3xl bg-[#1E2E24] text-white shadow-md space-y-3">
           <div className="flex items-center justify-between text-xs text-white/70">
             <span>Montant restant</span>
             <span>Total: 272 502</span>
           </div>
 
-          <p className="text-2xl sm:text-3xl font-extrabold text-white">
+          <p className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             227 085 FCFA
           </p>
 
           {/* Jauge dorée */}
-          <div className="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+          <div className="w-full bg-white/20 h-2.5 rounded-full overflow-hidden">
             <div
               className="bg-[#D49A38] h-full rounded-full"
-              style={{ width: "25%" }}
+              style={{ width: "22%" }}
             />
           </div>
         </div>
 
         {/* --- Section Échéancier --- */}
-        <div className="mt-8 space-y-3">
-          <h2 className="text-xs font-semibold text-gray-700">Échéancier</h2>
+        <div className="mt-8 space-y-4">
+          <h2 className="text-sm font-bold text-gray-900">Échéancier</h2>
 
           <div className="space-y-3">
             {milestones.map((m) => (
               <div
                 key={m.id}
-                className="p-3.5 rounded-2xl bg-white border border-gray-100 shadow-xs flex items-center justify-between"
+                className="p-4 rounded-3xl bg-white border border-gray-100 shadow-xs flex items-center justify-between"
               >
                 <div className="flex items-center gap-3.5">
                   {/* Badge statut */}
@@ -97,11 +96,11 @@ export default function RepaymentScheduleScreen() {
                     className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm shrink-0 ${
                       m.status === "paid"
                         ? "bg-[#EAF2EC] text-[#165A36]"
-                        : "bg-gray-50 text-gray-400 border border-gray-200"
+                        : "bg-white text-gray-400 border border-gray-100 shadow-xs"
                     }`}
                   >
                     {m.status === "paid" ? (
-                      <Check className="w-4 h-4 stroke-[3]" />
+                      <Check className="w-5 h-5 stroke-[2.5]" />
                     ) : (
                       m.id
                     )}
@@ -109,14 +108,14 @@ export default function RepaymentScheduleScreen() {
 
                   <div>
                     <p className="font-bold text-gray-900 text-sm">{m.date}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">
+                    <p className="text-xs text-gray-400 mt-0.5 font-medium">
                       {m.amount} · {m.label}
                     </p>
                   </div>
                 </div>
 
                 {m.status === "paid" && (
-                  <span className="bg-[#EAF2EC] text-[#165A36] text-[11px] font-bold px-3 py-1 rounded-full">
+                  <span className="bg-[#EAF2EC] text-[#165A36] text-xs font-bold px-3 py-1 rounded-full">
                     Payé
                   </span>
                 )}
@@ -131,7 +130,7 @@ export default function RepaymentScheduleScreen() {
         <button
           type="button"
           onClick={() => navigate("/confirm-transfer")}
-          className="w-full bg-[#165A36] hover:bg-[#134D2E] active:scale-[0.99] text-white py-4 rounded-2xl font-semibold text-base transition-all shadow-md shadow-[#165A36]/15 cursor-pointer text-center"
+          className="w-full bg-[#165A36] hover:bg-[#134D2E] active:scale-[0.99] text-white py-4 rounded-2xl font-bold text-base transition-all shadow-md shadow-[#165A36]/15 cursor-pointer text-center"
         >
           Rembourser maintenant
         </button>

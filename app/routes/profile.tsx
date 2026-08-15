@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import {
   ChevronLeft,
@@ -10,9 +11,8 @@ import {
   LogOut,
   ChevronRight,
 } from "lucide-react";
-import type { Route } from "./+types/profile";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Mon profil - LA FINA" },
     { name: "description", content: "Paramètres de compte et profil utilisateur" },
@@ -20,6 +20,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function ProfileScreen() {
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -89,7 +90,7 @@ export default function ProfileScreen() {
 
             {/* Sécurité */}
             <div
-              onClick={() => navigate("/create-pin")}
+              onClick={() => navigate("/security")}
               className="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gray-50 transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
@@ -122,7 +123,7 @@ export default function ProfileScreen() {
           <div className="bg-white rounded-3xl p-2 border border-gray-100 shadow-xs space-y-0.5">
             {/* Journal d'activité */}
             <div
-              onClick={() => navigate("/wallet-history")}
+              onClick={() => navigate("/activity-log")}
               className="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gray-50 transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-3">
@@ -138,7 +139,7 @@ export default function ProfileScreen() {
 
             {/* Déconnexion */}
             <div
-              onClick={() => navigate("/login")}
+              onClick={() => setShowLogoutModal(true)}
               className="flex items-center gap-3 p-3.5 rounded-2xl hover:bg-red-50 transition-colors cursor-pointer"
             >
               <LogOut className="w-5 h-5 text-red-500" />
@@ -151,6 +152,53 @@ export default function ProfileScreen() {
       </div>
 
       <div className="pb-8" />
+
+      {/* --- Modal Bottom Sheet Déconnexion (Image 1) --- */}
+      {showLogoutModal && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 backdrop-blur-xs transition-opacity">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-md bg-white rounded-t-[36px] p-6 pb-8 shadow-2xl flex flex-col items-center text-center animate-in slide-in-from-bottom duration-200"
+          >
+            {/* Poignée du Bottom Sheet */}
+            <div className="w-12 h-1.5 bg-gray-200 rounded-full mb-6" />
+
+            {/* Icône de Déconnexion Circulaire */}
+            <div className="w-18 h-18 rounded-full bg-[#FEE2E2]/80 flex items-center justify-center text-[#EF4444] mb-5">
+              <LogOut className="w-8 h-8 stroke-[2.2]" />
+            </div>
+
+            {/* Titre */}
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+              Se déconnecter ?
+            </h3>
+
+            {/* Description */}
+            <p className="text-xs sm:text-sm text-gray-500 max-w-xs leading-relaxed mb-6">
+              Vous devrez saisir votre code à la prochaine ouverture. Vos données restent en sécurité.
+            </p>
+
+            {/* Boutons d'action */}
+            <div className="w-full space-y-3">
+              <button
+                type="button"
+                onClick={() => navigate("/login")}
+                className="w-full bg-[#E54848] hover:bg-[#d43f3f] active:scale-[0.99] text-white py-4 rounded-2xl font-bold text-sm transition-all shadow-md shadow-[#E54848]/20 cursor-pointer"
+              >
+                Se déconnecter
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowLogoutModal(false)}
+                className="w-full bg-[#F3F4F6] hover:bg-gray-200 active:scale-[0.99] text-gray-800 py-4 rounded-2xl font-bold text-sm transition-all cursor-pointer"
+              >
+                Annuler
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

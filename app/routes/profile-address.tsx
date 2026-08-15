@@ -19,7 +19,7 @@ export default function ProfileAddressScreen() {
 
   const handleContinue = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/confirm-position");
+    navigate("/profile-documents");
   };
 
   return (

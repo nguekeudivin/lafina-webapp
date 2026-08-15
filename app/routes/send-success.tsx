@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router";
 import { Check } from "lucide-react";
-import type { Route } from "./+types/send-success";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Envoi réussi - LA FINA" },
     { name: "description", content: "Votre transfert a été effectué avec succès" },
@@ -18,8 +17,8 @@ export default function SendSuccessScreen() {
       <div className="pt-8" />
 
       {/* --- Contenu Central --- */}
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 -mt-10">
-        {/* Cercle avec coche blanche */}
+      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 -mt-8">
+        {/* Cercle avec double halo et coche blanche */}
         <div className="w-24 h-24 rounded-full bg-white/15 flex items-center justify-center shadow-xs">
           <div className="w-16 h-16 rounded-full bg-white text-[#165A36] flex items-center justify-center shadow-md">
             <Check className="w-8 h-8 stroke-[3]" />
@@ -33,16 +32,16 @@ export default function SendSuccessScreen() {
 
         {/* Montant débité */}
         <div className="mt-2 text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          - 25 000 <span className="text-2xl font-bold">ABBIA</span>
+          – 50 000 XAF
         </div>
 
         {/* Destinataire */}
         <p className="mt-3 text-sm text-emerald-100/90 font-medium">
-          à Coopérative Nkam Agro
+          à Jean Douala
         </p>
 
         {/* Référence */}
-        <p className="mt-1 text-xs text-emerald-100/60 font-mono">
+        <p className="mt-2 text-xs text-emerald-100/70 font-medium">
           Réf · LF-9021-TT
         </p>
       </main>
@@ -51,15 +50,15 @@ export default function SendSuccessScreen() {
       <div className="pb-4 pt-6 grid grid-cols-2 gap-3">
         <button
           type="button"
-          onClick={() => navigate("/transaction-details")}
-          className="bg-white/15 hover:bg-white/20 active:scale-[0.99] text-white py-4 rounded-2xl font-semibold text-sm transition-all text-center cursor-pointer"
+          onClick={() => navigate("/receipt")}
+          className="bg-white/20 hover:bg-white/25 active:scale-[0.99] text-white py-4 rounded-2xl font-bold text-sm transition-all text-center cursor-pointer"
         >
           Reçu PDF
         </button>
         <button
           type="button"
-          onClick={() => navigate("/wallet")}
-          className="bg-white hover:bg-gray-50 active:scale-[0.99] text-[#165A36] py-4 rounded-2xl font-semibold text-sm transition-all shadow-md shadow-black/10 text-center cursor-pointer"
+          onClick={() => navigate("/dashboard")}
+          className="bg-white hover:bg-gray-50 active:scale-[0.99] text-gray-900 py-4 rounded-2xl font-bold text-sm transition-all shadow-md shadow-black/10 text-center cursor-pointer"
         >
           Terminé
         </button>

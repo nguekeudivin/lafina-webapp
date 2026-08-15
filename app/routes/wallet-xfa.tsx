@@ -99,7 +99,7 @@ export default function WalletXfaScreen() {
             {/* Envoyer */}
             <button
               type="button"
-              onClick={() => navigate("/wallet-send")}
+              onClick={() => navigate("/send-xfa")}
               className="flex flex-col items-center gap-2 cursor-pointer group"
             >
               <div className="w-14 h-14 rounded-2xl bg-white group-hover:bg-gray-100 flex items-center justify-center text-gray-800 shadow-xs transition-colors border border-gray-100">

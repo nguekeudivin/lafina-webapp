@@ -1,5 +1,5 @@
 - finir l'integration des vues restant
 - verifier que toutes les vues ont ete integree.
-- ajouter les champs de KYC dans le model de donnees.
-- ajouter les champs manquant dans le model de donnees.
+
+
 - ecrire visualiser la documentation.

@@ -58,7 +58,7 @@ export default function SecurityScreen() {
 
           {/* Code PIN de paiement */}
           <div
-            onClick={() => navigate("/create-pin")}
+            onClick={() => navigate("/change-pin")}
             className="flex items-center justify-between p-3.5 rounded-2xl hover:bg-gray-50 transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-3">
