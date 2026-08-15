@@ -1,0 +1,3 @@
+- finir l'integration des vues restant
+- verifier que toutes les vues ont ete integree.
+- ecrire visualiser la documentation
